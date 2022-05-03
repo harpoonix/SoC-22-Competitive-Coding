@@ -70,8 +70,8 @@ int main() {
     // to sort an array
     int arr[] = {3,2,1,5,4};
     sort(arr,arr+sizeof(arr)/sizeof(int));      // sort(arr,arr+n)
-                                        // NOTE: don't use sizeof() when passing an array as a pointer in a function
-                                        // because then it'll be size of just a pointer
+    // NOTE: don't use sizeof() when passing an array as a pointer in a function
+    // because then it'll be size of just a pointer
     cout << "array after sorting:\t";
     for (int i=0; i<sizeof(arr)/sizeof(int); i++) {
         cout << arr[i] << ' ';

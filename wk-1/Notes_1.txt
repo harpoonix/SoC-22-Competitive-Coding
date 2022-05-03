@@ -1,0 +1,89 @@
+ios_base::sync_with_stdio(false);
+cin.tie(NULL);
+https://stackoverflow.com/a/31165481
+
+sync_with_stdio(false) will remove synchronisation between C and C++ standard streams. By default, std streams are synchronised, which allows you to mix C and C++ style I/O and get sensible and expected results. Disablng the sync b/w them will give UB when you try to mix C n C++ style I/O.
+
+cin.tie(NULL) will untie cin from cout. Usually cin and cout are tied. Which means calling cin will first flush cout buffer, and then ask for input from the user. If you untie cin from cout, make sure to flush output stream everytime you want to display something before expecting input on cin.
+
+RANDOM NUMBER GENERATOR
+https://codeforces.com/blog/entry/61587
+use mt19937 instead of rand().Much faster, much less restriction on numbers. Better overall.
+
+***VECTORS***
+https://www.geeksforgeeks.org/vector-in-cpp-stl/
+
+typedef vector<int> vi;
+vi v1(n); //length of vector is n
+vi v2(n, a); //length is n, all initialized to a 
+vi v3{1, 2, 3, 4};
+vi v4{v3.begin()+1, v3.end()-1};
+now .begin() is iterator to first element to array, and .end() is iterator to one after the last element of array.
+vi vec(iterator1, iterator2); will copy everything from iterator1 to BEFORE iterator2.
+So v4 contains {2, 3}.
+std functions sort(__first, __last);
+will sort the elements in the range [__first, __last) in ascending order, such that for each iterator i in the range [__first,__last-1), (i+1)<*i is false. The relative ordering of equivalent elements is not preserved, use stable_sort() if this is needed.
+reverse() will reverse order of elements in the range [__first, __last).
+rbegin() and rend() are like reverse iterators (begin and end iterators if you are traversing the vector from last to first)for beginning and end. rbegin() = end()-1 and rend()=begin()-1.
+cbegin() etc is a constant iterator equivalent to begin() etc.
+
+Obscure functions related to space & memory
+size()==int,no.of elements; max_size()==int, max elements it can hold; capacity(), resize(n)==void,resizes container to contain n elements only ; shrink_to_fit()==void, reduces capacity to first its size and destroys all elements beyond capacity; empty()==bool, whether_empty
+
+Functions related to modifying contents
+assign(std::initializer_list<int> __l);
+assign(__first, __last);
+assign(n, val); will assign n entries with value val to vector.
+
+insert(iterator, value); will insert value at position iterator, and return pointer to newly inserted element.
+insert(iterator, std::initializer_list<int> __l);
+insert(iterator, __first, __last);
+
+erase(std::vector<int>::const_iterator __position) will remove element at that pos.
+erase(__first, __last);
+clear() will empty the vector
+
+std::fill(__first, __last, __val) will assign value __val to range [first, last). 
+
+
+***STRINGS***
+https://www.geeksforgeeks.org/stdstring-class-in-c/
+getline() can be used to get user input from cin into a string.
+copy(char *__s, std::size_t __n, std::size_t __pos) will copy substring to char array __s.
+__n is the no of characters to copy, and __pos is index of first element to be copied.
+swap() will swap 2 strings.
+
+
+STACK, DEQUE, QUEUE, PRIORITY_QUEUE
+LIFO (Last in, first out)
+means that the last arriving unit in the inventory is sold first. 
+FIFO (First in, first out)
+means that the first arriving unit in an inventory is sold first.
+Stack is LIFO, queue is FIFO.
+
+***STACK***
+https://www.geeksforgeeks.org/stack-in-cpp-stl/
+In stack, topmost element = 'first' element
+empty()==bool, whether_empty;
+size()==int, size of stack;
+top() returns a read/write reference to the topmost element of the stack.
+pop()==void, removes the first element of the stack;
+push(value)==void, adds data to top of stack.
+swap() will swap one stack with another.
+
+***QUEUE***
+https://www.geeksforgeeks.org/queue-cpp-stl/
+https://www.geeksforgeeks.org/containers-cpp-stl/
+Queue is a container adaptor, operates in FIFO manner.
+push() adds element to end of queue.
+front returns a read/write reference to the first element of the queue.
+pop() removes first element of queue.
+empty()==bool, whether_empty;
+back() returns a read/write reference to the last element of the queue. 
+
+***DEQUE***
+https://www.geeksforgeeks.org/deque-cpp-stl/
+Double ended queues, they are sequence containers with feature of expansion and contraction at both ends.
+This makes them faster and more efficient than vectors or queues.
+push_back() will add data to the end of deque.
+push_front() adds data tothe front.

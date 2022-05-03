@@ -20,6 +20,7 @@ struct comp{
 int main() {
 
     stack<int> st;
+    cout<<"Stack started--------------\n";
     for (int i=0; i<10; i++) {
         st.push(i);
     }
@@ -42,6 +43,7 @@ int main() {
     // -- queue
 
     queue<int> q;
+    cout<<"Queue started--------------------\n";
     for (int i=0; i<10; i++) {
         q.push(i);
     }
@@ -57,6 +59,7 @@ int main() {
     // deque
 
     deque<int> dq;
+    cout<<"Deque started--------------------\n";
 
     for (int i=0; i<5; i++) {
         dq.push_back(i);
@@ -76,7 +79,8 @@ int main() {
     cout << dq.empty() << "\n";
 
 
-    priority_queue<int> pq;     // max heap
+    priority_queue<int> pq;
+    cout<<"Priority queue started---------------------\n";     // max heap
     for (int i=0; i<10; i++) {
         pq.push(i);
     }
