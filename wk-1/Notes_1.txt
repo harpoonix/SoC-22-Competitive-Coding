@@ -76,7 +76,7 @@ https://www.geeksforgeeks.org/queue-cpp-stl/
 https://www.geeksforgeeks.org/containers-cpp-stl/
 Queue is a container adaptor, operates in FIFO manner.
 push() adds element to end of queue.
-front returns a read/write reference to the first element of the queue.
+front() returns a read/write reference to the first element of the queue.
 pop() removes first element of queue.
 empty()==bool, whether_empty;
 back() returns a read/write reference to the last element of the queue. 
@@ -85,5 +85,20 @@ back() returns a read/write reference to the last element of the queue.
 https://www.geeksforgeeks.org/deque-cpp-stl/
 Double ended queues, they are sequence containers with feature of expansion and contraction at both ends.
 This makes them faster and more efficient than vectors or queues.
+DEQUE IS VERY SIMILAR TO VECTOR, with added functionality of front and back both.
+
 push_back() will add data to the end of deque.
-push_front() adds data tothe front.
+push_front() adds data to the front.
+front() and back() are usual.
+pop_back() wil remove last element of deque.
+pop_front() analogous.
+insert(), assign(), erase(), empty(), size() work same as in vector.
+at(int __n) returns reference to element present index __n.
+***
+std::find(iterator __first, iterator __last, const _CharT & _val) will find if the _val occurs in range [__first, __last) and returns an iterator to the first occrence. If no occurence is found, then __last is returned.
+
+***PRIORITY QUEUE***
+https://www.geeksforgeeks.org/priority-queue-in-cpp-stl/
+It is a type of container adaptor, designed such that the first element of the queue is the greatest of all and subsequent elements are in non increasing order (priority of elements is fixed, so to speak).
+push() will add data to the queue. 
+top() returns read only reference to the first element of the queue.
