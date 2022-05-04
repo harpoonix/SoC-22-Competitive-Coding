@@ -1,3 +1,8 @@
+Git Notion guide for basic commands
+https://www.notion.so/Version-Control-with-Git-51504dd7484e446aa5f5a50b757a29b4#785a0fda01b04de3906ad0fbb1dbb4db
+Git guide
+https://github.com/git-guides/
+
 General configuration:
 
 git config --global user.name <your git username in double quotes>
