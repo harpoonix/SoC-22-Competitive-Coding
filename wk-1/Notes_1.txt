@@ -102,3 +102,6 @@ https://www.geeksforgeeks.org/priority-queue-in-cpp-stl/
 It is a type of container adaptor, designed such that the first element of the queue is the greatest of all and subsequent elements are in non increasing order (priority of elements is fixed, so to speak).
 push() will add data to the queue. 
 top() returns read only reference to the first element of the queue.
+***This is incomplete. Priority queue study required.
+
+******
