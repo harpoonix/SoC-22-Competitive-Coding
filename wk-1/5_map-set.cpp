@@ -10,11 +10,12 @@ int main() {
 
     pair<int,char> p(1,'a');
     cout<<p.first<<' '<<p.second<<"\n";
-
     p = make_pair(1,'a');
     p = {1,'a'};
 
     map<int,int> m1;
+    std::map<int, int>::iterator it = m1.begin();
+
     m1.insert(pii(1,10));
     m1.insert(pii(3,20));
     m1.insert(pii(-1,100));

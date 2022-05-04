@@ -98,6 +98,7 @@ int main() {
     for (int i=0; i<10; i++) {
         pq2.push(i);
     }
+    pq2.pop(); pq2.pop();
     cout<<"pq2.top():\t"<<pq2.top()<<"\n";
 
 
