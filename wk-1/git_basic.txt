@@ -29,6 +29,11 @@ git remote add <some name> <link>			// this adds a remote repo that we can use b
 You can use "git status" to see the status of your files
 git add <file paths>					// adds changes in the working directory to the staging area
 	Note: to add the entire directory, just use "git add ."
+To add all changes across all parent directories, including file updations, new files, file deletions,
+use git add -A
+For only staging changes (deletions and updates) to existing files,
+git add --update
+It is however more meaningful to add groups of files that have some similarity, so that commit message can properly convey the commit details.
 Can again use "git status" to see the status of files (added or not)
 git commit -m "some message for this commit"
 git push <the name you used for this remote repo> <branch name>
