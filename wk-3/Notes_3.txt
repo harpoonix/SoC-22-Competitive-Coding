@@ -1,0 +1,125 @@
+GRAPHS
+[Graph Data Structure and Algorithms](https://www.geeksforgeeks.org/graph-data-structure-and-algorithms/)
+
+Graph Terminology
+A graph is a non-linear data structure containing nodes and edges. Nodes are also refered to as vertices, and edges connect a pair of nodes.
+A path from node 1 to 5 can be 1->3->4->5
+A path from vertex u to v is a sequence of vertices {v_i} such that consecutive vertices are adjacent.
+A cycle is a path such that it starts and ends at the same node.
+A graph is connected if there is a path from any node to any other node, ie there exists a path between any pair of distinct vertices.
+A graph that is not connected can be decomposed into 2 or more connected subgraphs, each pair of which has no node in common.
+A tree is an undirected graph in which any pair of vertices are connected by exactly one path, or equivalently 
+> a connected acyclic undirected graph = Tree
+Directed graph, edges have a direction. An edge is an ordered pair {v, w} whereas an edge an ordered pair (v, w) or (w, v), where v and w are vertices.
+Weighted graph has weights on edges. (each branch is given a numerical weight)
+Adjacent nodes = nodes connected by an edge
+Degree of a node = No. of nodes it is connected to, or equivalently no of adjacent nodes.
+Simple graph
+A graph that does not have more than one edge between 2 vertices and no edge starts and ends at the same vertex (no self loops basically).
+![](images/simplegraph.png)
+Length of a path is the no. of edges in a path.
+Simple Path is a path with no repeating vertices (no cycles)
+
+Tree
+A connected graph with no cycles
+* Tree with n nodes has exactly n-1 edges.
+Consider any edge (u, v) in the tree. Remove this edge. Now the two graphs obtained are disjoint, the entire graph cannot remain connected after removing this edge, that would imply there were >1 paths from u to v (contradiction, was a tree)
+There are only 2 connected pgraphs now, since more than 2 connected graphs cannot be formed by removal of only one edge.
+Let the 2 graphs thus formed be c1 and c2 This c1 and c2 are connected, and no cycle is introduced by removing an edge, c1 and c2 are trees.
+So if n1, n2 are vertices in c1, c2, we know by induction hypo that edges are n1-1 and n2-1.
+Edges in the parent tree are thus (n1-1) + (n2-1) + 1 = (n1+n2) - 1  = n-1. QED
+* Any connected graph on n nodes and n-1 edges is a tree.
+Proof - there can't be any cycle.
+* Any graph with n nodes and <(n-1) edges is disconnected.
+This graph is defo not a tree (since tree has n-1 edges), so it must fail due to one of these conditions
+1. Has a cycle
+2. is disconnected
+Assume it is connected and has a cycle, then we can remove edges until a cycle no longer exists. Now it is still connected and has no cycles. This must be a tree, but it has <(n-1) edges. Contradiction. So it must be disconnected.
+
+Leaves of a tree = vertices with degree 1.
+A spanning tree of graph G is a subgraph which is a tree and contains all vertices of G.
+It need not be unique.
+
+Special types of graphs
+Bipartite graphs
+A graph whose vertices can be divided into 2 disjoint and independent sets U and V, that is, every edge has one vertex in U and one vertex in V.
+Independent set = a set of vertices in a graph such that no two vertices are adjacent.
+Equivalently, a bipartite graph is a graph that does not contain any odd length cycles.
+The 2 sets may be thought of as coloring the graph in 2 colors, say red and blue such that all vertices in U are blue and other red. Then each edge has endpoints of different colors. If such a coloring is impossible then the graph is non-bipartite, like a triangle. 
+If a bipartite graph is not connected, it may have more than bipartition. 
+* Every tree is bipartite.
+Make the root model of the tree. Then we will have vertices in "levels". 
+Every bipartite graph is 2-chromatic.
+So let the vertices at even distance from root be blue, and odd distance from root be red.
+Now vertices adjacent to each other cannot have the same color.
+If 2 vertices at same level (even distance, say) are adjacent, (say v1 and v2) then we can visit v2 by an even distance path, and also through v1, which is an odd-distace path. Thus there would be 2 paths from root to v2, which is not possible since this is a tree.
+![Bipartite 1](images/bipartite_tree1.png)
+![Bipartite 2](images/bipartite_tree2.png)
+
+GRAPH REPRESENTATION
+
+Adjacency list
+Each node v is assigned an adjacency list which contains all nodes to which there is an edge from v.
+For undirected edge {v, w} v would be in adjacency list of w, and w would be in adjacency list of v.
+To represent weighted edges, use array/vector of pairs of ints
+vector<vector<pair<int, double>>> list
+vector<pair<int, double>> 1_adjacent = {{1, 10.0}, {4, 5.0}, {5, 3.0}, {7, 1.0}}; where pair is {adjacent_node, weight_of_edge}
+
+Adjacency Matrix
+It indicates the edges that a graph contains.
+bool adj[n][n];
+where adj[i][j] is 1 iff there is an edge from i to j **Note that i->j edge is [i][j], so directed garphs can be store well, just like in list.
+Drawback is that it uses O(n^2) memory. For adjacency list, the space is ~O(m) where m is no. of edges.
+<img src="images/adjacency.jpg" width="500" />
+
+Edge list
+It contains all edges of graph in some order.
+vector<pair<int, int>> edges;
+edges.push_back({0, 1});
+
+GRAPH TRAVERSAL
+We discuss BFS and DFS here.
+Both algorithms are given a starting node in the graph, and both reach every node that can be reached from this starting node. The difference is the order in which they traverse the graph and reach nodes.
+NOTE: considering undirected graphs here.
+
+DEPTH-FIRST SEARCH
+Depth First Search always follows a single path in the graph as long as it finds new nodes.
+After this, it returns to previous nodes and begins to explore other parts of the graph.
+It keeps track of the visited nodes, so a node is only processed once.
+Time complexity is O(m+n), since it processes each node and edge once.
+
+BREADTH FIRST SEARCH
+BFS visits nodes of the graph in increasing order of their distance from the starting node.
+Thus we can calculate the distance (length of the shortest path) of all the nodes from the starting node.
+Note: Correct shortest distance only given for unweighted graphs.
+Implementation: We use a queue for BFS. 
+Recall that for DFS, a stack like implementation is used. (Last In, First Out)
+We start with a source, and add its adjacent nodes to the queue, and remove source from the queue. 
+Then we take the front of the queue, remove it, add its adjacent elements. And we repeat. We see here that first those nodes are visited that are closer to the source. First, second, etc layers come in order.
+
+APPLICATIONS OF TRAVERSAL
+
+Connectivity Check
+A graph is connected if there is a path between any 2 nodes of the graph.
+So we start at a vertex and do DFS. If all nodes have been visited after this one run, then graph is connected.
+The graph is connected if all nodes have been visited by a single BFS/DFS.
+
+Cycle Check
+If there is a cycle in the graph, then we will find a node such that one of its neighbour (apart from its parent) has already been traversed.
+
+Bipartitte Check
+Recall that bipartite graph is a graph thta be divided into 2 disjoint independent sets, and they are 2-chromatic. So if the graph can be traversed (say by BFS) in such a way that we assign different colors to odd and even levels, then we just need to ensure no node has the same color as any node adjacent to it.
+If we find 2 adjacent vertices with same color, we return non-bipartite.
+A bipartite graph has no odd member cycles. (recall)
+
+SHORTEST PATHS 
+In an unweighted graph, the distance of a vertex from source is simply at what 'level' or no. of edges it is from the source.
+Now we deal with weighted graph.
+If G has no negative cycles, then the shortest path between any 2 vertices is a simple path (no repeating vertices), thus at most n-1 edges.
+Say the shortest path from s->t goes through repeating vertex v. We can simply remove the path between consecutive visits to v until the path is simple. Since the cycle was non-negative, the distance is no greater than original, with fewer edges.
+
+DIJKSTRA'S ALGORITHM
+Find shortest path from a source to all other vertices (works only for non negative weights).
+Prerequisite for dijkstra - no negative edges.
+
+
