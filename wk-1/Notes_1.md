@@ -27,7 +27,7 @@ now .`begin()` is iterator to first element to array, and .`end()` is iterator t
 `vi vec(iterator1, iterator2);` will copy everything from iterator1 to BEFORE iterator2.
 So v4 contains `{2, 3}`.  
 std functions `sort(__first, __last);`
-will sort the elements in the range `[__first,__last)` in **ascending order, such that for each iterator i in the range [__first,__last-1), (i+1)<*i is false. The relative ordering of equivalent elements is not preserved, use stable_sort() if this is needed.**
+will sort the elements in the range `[__first,__last)` in **ascending order, such that for each iterator i in the range `[__first,__last-1)`, `(i+1)<*i` is false. The relative ordering of equivalent elements is not preserved, use `stable_sort()` if this is needed.**
 
 `reverse()` will reverse order of elements in the range `[__first,__last)`.  
 `rbegin()` and `rend()` are like reverse iterators (begin and end iterators if you are traversing the vector from last to first)for beginning and end.  
@@ -46,11 +46,11 @@ will sort the elements in the range `[__first,__last)` in **ascending order, suc
 `assign(__first, __last);`
 `assign(n, val);` will assign n entries with value val to vector.
 
-`insert(iterator, value);` will insert value at position iterator, and return pointer to newly inserted element.
+`insert(iterator, value);` will insert value at position iterator, and return pointer to newly inserted element.  
 `insert(iterator, std::initializer_list<int> __l);`
 `insert(iterator, __first, __last);`
 
-`erase(std::vector<int>::const_iterator __position)` will remove element at that pos.
+`erase(std::vector<int>::const_iterator __position)` will remove element at that pos.  
 `erase(__first, __last);`
 `clear()` will empty the vector
 
@@ -60,11 +60,12 @@ will sort the elements in the range `[__first,__last)` in **ascending order, suc
 
 [GFG String](https://www.geeksforgeeks.org/stdstring-class-in-c/)  
 `getline()` can be used to get user input from cin into a string.
-`copy(char *__s, std::size_t __n, std::size_t __pos)` *will copy substring to* `char array __s`.
-__n is the no of characters to copy, and__pos is index of first element to be copied.
+`copy(char *__s, std::size_t __n, std::size_t __pos)` *will copy substring to* `char array __s`.  
+__n is the no of characters to copy, and__pos is index of first element to be copied.  
 `swap()` will swap 2 strings.
 
-STACK, DEQUE, QUEUE, PRIORITY_QUEUE  
+### STACK, DEQUE, QUEUE, PRIORITY_QUEUE  
+
 *LIFO (Last in, first out)*  
 means that the last arriving unit in the inventory is sold first.  
 *FIFO (First in, first out)*  
@@ -86,6 +87,7 @@ In stack, *topmost element = 'first' element*
 
 [GFG Queue](https://www.geeksforgeeks.org/queue-cpp-stl/)  
 [GFG Containers](https://www.geeksforgeeks.org/containers-cpp-stl/`)  
+
 Queue is a container adaptor, operates in FIFO manner.  
 `push()` adds element to end of queue.  
 `front()` returns a read/write reference to the first element of the queue.  
@@ -190,7 +192,7 @@ Maps are associative containers that store elements in a mapped, ie key-value fa
 Keys are unique.
 
 Constructor -  
-`<typename _Key, typename _Tp, typename _Compare = std :: less < _Key >, typename _Alloc = std :: allocator < std :: pair < const _Key, _Tp > >> map`
+`<typename _Key, typename _Tp, typename _Compare = std :: less < _Key >, typename _Alloc = std :: allocator < std :: pair < const _Key, _Tp > >> map`  
 Arguments are type of key, type of value, a compare function (defaulted to less), an allocator.
 
 ## Allocator
@@ -215,11 +217,11 @@ Back to map
 `size()`, `empty()`, `erase(__iterator)`, `erase(const g)`==void, removes element with key g, `clear();`  
 `insert()` parameters are
 
-1) `__list`
-2) `Pair &_p`
-3) `std::Pair<int, int> &_p`
-4) `iterator __it1, iterator __it2`
-5) `iterator __position, Pair &_p`
+1. `__list`
+2. `Pair &_p`
+3. `std::Pair<int, int> &_p`
+4. `iterator __it1, iterator __it2`
+5. `iterator __position, Pair &_p`
 
 `count(g)`==bool, checks if key with value g is present in map  
 `find(g)`==iterator, to the element with key 'g', otherwise `end()`  

@@ -122,4 +122,33 @@ DIJKSTRA'S ALGORITHM
 Find shortest path from a source to all other vertices (works only for non negative weights).
 Prerequisite for dijkstra - no negative edges.
 
+At every step, a node v is selected which has not been processed, (2 sets of nodes, S and N\S)
+and whose current distance is as small as possible.
+Then the algorithm goes through all the neighbours of the node, and reduces distances using their edges.
+All processed vertices have the distances as the final smallest distance.
+
+BELLMAN FORD ALGORITHM
+[Bellman ford GFG](https://www.geeksforgeeks.org/bellman-ford-algorithm-dp-23/)
+This also finds the shortest distance froma source vertex to all vertices.
+However, it can handle negative weights also.
+Note that if there is a negative cycle in the graph, the concept of shortest path breaks down, since we can go throught the cycle inf many times, and each time it will reduce the distance.
+Steps
+1. Initialise the distance of the source vertex as 0 and all other vertices as inf. Make an array of size V that stores distances.
+2. Do this step V-1 times
+    a) For each edge u-v, if dist[v]>dist[u]+weight(u-v), then dist[v]=dist[u]+weight(u-v)
+3. Now we check if distances have stabilised or not. If not, we report a negative cycle.
+During any of the cycles, if distances have stabilised before V-1 rounds, then we can exit there and distances are final.
+
+Working
+It first finds the shortest paths which are 1 edge long, then shortest paths which are 2 edges long, etc.
+Since the maximum length of a path can be V-1, we do V-1 rounds. By this all shortest paths should have been found, if there's no negative cycle.
+
+FLOYD MARSHALL ALGORITHM
+---
+DIRECTED ACYCLIC GRAPHS
+A directed grph with no directed cycles.
+We can always construct a topological sort for a DAG.
+Topological Sort 
+A topological sort of a DAG, say G=(V, E), is a linear ordering of all its vertices such that if G contains the edge u->v, then u appears before v in the ordering. 
+Again, if a cycle is present, no linear ordering is possible.
 
